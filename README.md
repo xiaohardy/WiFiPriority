@@ -1,5 +1,7 @@
 # WiFi Priority
 
+[简体中文说明](README.zh-CN.md)
+
 WiFi Priority is a small macOS menu bar app that switches among your saved Wi-Fi networks in the order you choose.
 
 ![WiFi Priority settings with three example networks](docs/images/settings-preview.png)
