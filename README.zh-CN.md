@@ -16,7 +16,17 @@
 
 ![安装镜像中只有 WiFi Priority 和 Applications](docs/images/installer.png)
 
-这个预览版用了本地证书签名，尚未经过 Apple 公证。如果 macOS 阻止首次打开，先尝试打开一次，再到“系统设置 → 隐私与安全性”选择“仍要打开”。操作步骤见 [Apple 官方说明](https://support.apple.com/zh-cn/102445)。目前只在 Apple Silicon、macOS 27 上检查过；最低系统目标为 macOS 13，其他版本和 Intel Mac 尚未实测。
+### 首次打开时的 macOS 安全提示
+
+这个预览版使用本地证书签名，**尚未经过 Apple 公证**。从 GitHub 下载后，macOS 可能提示“Apple 无法检查 App 是否包含恶意软件”或“无法验证开发者”。只有在确认 DMG 来自[本项目的发布页](https://github.com/xiaohardy/WiFiPriority/releases/tag/v0.9.4)，并且你信任它时，才继续：
+
+1. 把软件拖进“应用程序”后，尝试打开一次。如果出现警告，选择“完成”（如有）。
+2. 打开“系统设置 → 隐私与安全性”，向下找到“安全性”，点“仍要打开”。
+3. 系统再次询问时，点“打开”。
+
+macOS 会在这台 Mac 上记住你对这个 App 的选择。详细步骤见 [Apple 官方说明](https://support.apple.com/zh-cn/102445)。如果提示 **“App 已损坏”**或**“将损坏您的电脑”**，先别打开，请在 [Issues](https://github.com/xiaohardy/WiFiPriority/issues) 告诉我们。不需要关闭整个系统的安全检查。
+
+目前只在 Apple Silicon、macOS 27 上检查过；最低系统目标为 macOS 13，其他版本和 Intel Mac 尚未实测。
 
 ## 排好顺序，开始使用
 

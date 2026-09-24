@@ -16,7 +16,15 @@ WiFi Priority is a small macOS menu bar app that switches among your saved Wi-Fi
 
 ![WiFi Priority and Applications in the installer](docs/images/installer.png)
 
-This preview build is locally signed but not notarized by Apple. If macOS blocks the first launch, try opening the app once, then go to **System Settings → Privacy & Security → Open Anyway**. [Apple's instructions](https://support.apple.com/en-us/102445) explain this step.
+### First launch on macOS
+
+This preview build uses a local signing certificate and has **not been notarized by Apple**. After downloading it, macOS may say it cannot check the app for malicious software or verify its developer. Only continue if you got the DMG from [this project's release](https://github.com/xiaohardy/WiFiPriority/releases/tag/v0.9.4) and trust it.
+
+1. After copying the app to Applications, try to open it once. If a warning appears, click **Done** if available.
+2. Open **System Settings → Privacy & Security**, scroll down to **Security**, and click **Open Anyway**.
+3. When macOS asks again, click **Open**.
+
+macOS saves this choice for the app on your Mac. See [Apple's guide](https://support.apple.com/en-us/102445) for the same steps. If macOS says the app **is damaged** or **will damage your computer**, stop and [report the warning](https://github.com/xiaohardy/WiFiPriority/issues). Do not turn off macOS security checks for all apps.
 
 Requires macOS 13 or later on Apple Silicon. The current build was checked on macOS 27; other versions and Intel Macs have not been tested.
 
