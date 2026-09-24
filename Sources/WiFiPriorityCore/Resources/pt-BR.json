@@ -47,7 +47,7 @@
   "waiting": "Aguardando uma rede disponível. Redes com falha estão em espera.",
   "preview": "Modo de prévia: sem buscas nem trocas de rede",
   "saved": "Salvo. Aguardando a verificação das redes.",
-  "loadFailed": "Não foi possível ler os ajustes. A troca automática está pausada. Salve sua lista de redes novamente.",
+  "loadFailed": "Não foi possível ler os ajustes. A troca automática está pausada. O arquivo original foi preservado; mova-o antes de criar uma nova lista.",
   "loginApproval": "Permita o WiFi Priority em Itens de Início nos Ajustes do Sistema.",
   "permissionFirst": "Permita o acesso à localização e busque novamente.",
   "busy": "Uma verificação de conexão está em andamento. Tente buscar novamente em instantes.",

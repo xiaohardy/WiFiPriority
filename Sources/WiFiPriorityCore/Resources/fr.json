@@ -47,7 +47,7 @@
   "waiting": "En attente d’un réseau disponible. Les réseaux en échec sont en temporisation.",
   "preview": "Mode aperçu : aucune recherche ni aucun changement de réseau",
   "saved": "Enregistré. En attente de vérification des réseaux.",
-  "loadFailed": "Impossible de lire les réglages. Le basculement automatique est suspendu. Enregistrez à nouveau votre liste de réseaux.",
+  "loadFailed": "Impossible de lire les réglages. Le basculement automatique est suspendu. Le fichier d'origine est conservé ; déplacez-le avant de créer une nouvelle liste.",
   "loginApproval": "Autorisez WiFi Priority dans les éléments d’ouverture des Réglages Système.",
   "permissionFirst": "Autorisez l’accès à la localisation, puis relancez la recherche.",
   "busy": "Une vérification de connexion est en cours. Relancez la recherche dans un instant.",

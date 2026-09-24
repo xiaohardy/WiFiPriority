@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 cd "$(dirname "$0")/.."
-BUILD_DIR="${BUILD_DIR:-.build}"
+BUILD_DIR="${BUILD_DIR:-${TMPDIR:-/tmp}/wifipriority-build}"
 OUTPUT_DIR="${OUTPUT_DIR:-dist}"
 # Native SwiftPM also supports Xcode versions before the Swift Build backend.
 swift build --build-system native -c release --scratch-path "$BUILD_DIR"

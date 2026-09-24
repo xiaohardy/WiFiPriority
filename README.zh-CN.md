@@ -10,7 +10,7 @@
 
 ## 安装
 
-1. 从 [v0.9.3 预览版](https://github.com/xiaohardy/WiFiPriority/releases/tag/v0.9.3)下载适用于 Apple Silicon 的 DMG。
+1. 从 [v0.9.4 预览版](https://github.com/xiaohardy/WiFiPriority/releases/tag/v0.9.4)下载适用于 Apple Silicon 的 DMG。
 2. 打开 DMG，把 **WiFi Priority.app** 拖进 **Applications**。
 3. 从“应用程序”打开软件；它会待在屏幕顶部的菜单栏。
 

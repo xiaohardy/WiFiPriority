@@ -10,7 +10,7 @@ WiFi Priority is a small macOS menu bar app that switches among your saved Wi-Fi
 
 ## Install
 
-1. Download the Apple Silicon DMG from the [v0.9.3 release](https://github.com/xiaohardy/WiFiPriority/releases/tag/v0.9.3).
+1. Download the Apple Silicon DMG from the [v0.9.4 release](https://github.com/xiaohardy/WiFiPriority/releases/tag/v0.9.4).
 2. Open the DMG and drag **WiFi Priority** to **Applications**.
 3. Open **WiFi Priority** from Applications. The menu bar icon appears at the top of the screen.
 

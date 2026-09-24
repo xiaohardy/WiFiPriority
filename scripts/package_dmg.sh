@@ -26,6 +26,10 @@ MOUNT="$(cd "$MOUNT" && pwd -P)"
 ditto -x -k "$ARCHIVE" "$WORK/stage"
 APP="$WORK/stage/WiFi Priority.app"
 codesign --verify --strict "$APP"
+if LC_ALL=C strings "$APP/Contents/MacOS/WiFiPriority" | grep -E '/Users/[^/]+/|/home/[^/]+/' >/dev/null; then
+    echo "Installer executable contains a personal build path." >&2
+    exit 1
+fi
 if [ "${REQUIRE_STABLE_SIGNATURE:-0}" = 1 ]; then
     REQUIREMENT="$(codesign -d -r- "$APP" 2>&1)"
     case "$REQUIREMENT" in

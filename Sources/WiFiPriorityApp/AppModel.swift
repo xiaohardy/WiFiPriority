@@ -25,6 +25,7 @@ final class AppModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     private let queue = DispatchQueue(label: "org.wifipriority.worker")
     private let logQueue = DispatchQueue(label: "org.wifipriority.log")
     private let directory = FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Library/Application Support/WiFiPriorityOpen")
+    private let settingsStore: SettingsStore?
     private var engine: SwitchEngine
     private var timer: Timer?
     private var busy = false
@@ -62,22 +63,21 @@ final class AppModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     init(preview: Bool) {
         self.preview = preview
         let file = FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Library/Application Support/WiFiPriorityOpen/settings.json")
-        var loaded = try! Settings()
+        var loaded: Settings
         var loadError: StatusMessage?
+        var resetCredentialAccess = false
         if preview {
             loaded = try! Settings(networks: ["Home Wi-Fi", "Mobile Hotspot", "Backup Wi-Fi"])
+            settingsStore = nil
             if let index = CommandLine.arguments.firstIndex(of: "--language"), CommandLine.arguments.indices.contains(index + 1) {
                 loaded.language = AppLanguage(rawValue: CommandLine.arguments[index + 1]) ?? .system
             }
-        } else if FileManager.default.fileExists(atPath: file.path) {
-            do { loaded = try JSONDecoder().decode(Settings.self, from: Data(contentsOf: file)) }
-            catch { loadError = .init(.loadFailed) }
-        }
-        let resetCredentialAccess = !preview && loaded.credentialIdentity != Self.currentCredentialIdentity
-        if resetCredentialAccess {
-            loaded.paused = true
-            loaded.credentialReadyNetworks = []
-            loaded.credentialIdentity = nil
+        } else {
+            let store = SettingsStore(file: file, credentialIdentity: Self.currentCredentialIdentity)
+            settingsStore = store
+            loaded = store.settings
+            loadError = store.loadFailed ? .init(.loadFailed) : nil
+            resetCredentialAccess = store.requiresCredentialReset
         }
         settings = loaded
         engine = SwitchEngine(networks: loaded.networks)
@@ -125,10 +125,7 @@ final class AppModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
     }
     private func persist(_ next: Settings) throws {
-        guard !preview else { return }
-        let encoder = JSONEncoder(); encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-        try PrivateAppStorage.write(encoder.encode(next),
-                                    to: directory.appendingPathComponent("settings.json"))
+        try settingsStore?.write(next)
     }
     func setLanguage(_ language: AppLanguage) {
         var next = settings; next.language = language

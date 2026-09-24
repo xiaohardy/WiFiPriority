@@ -47,7 +47,7 @@
   "waiting": "Waiting for an available network. Failed networks are on cooldown.",
   "preview": "Preview mode: no scanning or network switching",
   "saved": "Saved. Waiting to check networks.",
-  "loadFailed": "Settings could not be read. Auto-switching is paused. Save your network list again.",
+  "loadFailed": "Settings could not be read. Auto-switching is paused. The original settings file was kept; move it aside before creating a new list.",
   "loginApproval": "Allow WiFi Priority in Login Items in System Settings.",
   "permissionFirst": "Allow Location access, then scan again.",
   "busy": "A connection check is in progress. Try scanning again shortly.",

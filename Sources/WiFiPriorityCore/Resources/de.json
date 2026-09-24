@@ -47,7 +47,7 @@
   "waiting": "Warten auf ein verfügbares Netzwerk. Für fehlgeschlagene Netzwerke läuft die Wartezeit.",
   "preview": "Vorschaumodus: keine Suche und kein Netzwerkwechsel",
   "saved": "Gesichert. Netzwerke werden demnächst geprüft.",
-  "loadFailed": "Einstellungen konnten nicht gelesen werden. Der automatische Wechsel ist pausiert. Sichere deine Netzwerkliste erneut.",
+  "loadFailed": "Einstellungen konnten nicht gelesen werden. Der automatische Wechsel ist pausiert. Die ursprüngliche Datei wurde behalten; verschiebe sie, bevor du eine neue Netzwerkliste erstellst.",
   "loginApproval": "Erlaube WiFi Priority unter „Anmeldeobjekte“ in den Systemeinstellungen.",
   "permissionFirst": "Erlaube den Ortungszugriff und suche erneut.",
   "busy": "Eine Verbindungsprüfung läuft. Versuche die Suche gleich noch einmal.",

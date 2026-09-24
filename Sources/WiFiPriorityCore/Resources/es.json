@@ -47,7 +47,7 @@
   "waiting": "Esperando una red disponible. Las redes con fallos están en espera.",
   "preview": "Modo de vista previa: sin búsquedas ni cambios de red",
   "saved": "Guardado. A la espera de comprobar las redes.",
-  "loadFailed": "No se han podido leer los ajustes. El cambio automático está en pausa. Guarda de nuevo la lista de redes.",
+  "loadFailed": "No se pudieron leer los ajustes. El cambio automático está en pausa. Se conservó el archivo original; muévelo antes de crear una lista nueva.",
   "loginApproval": "Permite WiFi Priority en Ítems de inicio, en Ajustes del Sistema.",
   "permissionFirst": "Permite el acceso a la ubicación y vuelve a buscar.",
   "busy": "Hay una comprobación de conexión en curso. Vuelve a buscar en unos instantes.",
