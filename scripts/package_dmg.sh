@@ -5,7 +5,7 @@ VERSION="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' Resour
 BUILD="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleVersion' Resources/Info.plist)"
 OUTPUT_DIR="${OUTPUT_DIR:-dist}"
 ARCHIVE="$OUTPUT_DIR/WiFiPriority-$VERSION-dev.zip"
-DMG="$OUTPUT_DIR/WiFiPriority-$VERSION-build$BUILD-test-arm64.dmg"
+DMG="$OUTPUT_DIR/WiFiPriority-$VERSION-build$BUILD-preview-arm64.dmg"
 test -f "$ARCHIVE"
 WORK="$(mktemp -d "${TMPDIR:-/tmp}/wifipriority-dmg.XXXXXX")"
 MOUNT="$WORK/mounted"
@@ -33,14 +33,16 @@ if [ "${REQUIRE_STABLE_SIGNATURE:-0}" = 1 ]; then
         *) echo "Installer app is missing a stable certificate signature." >&2; exit 1 ;;
     esac
 fi
-ln -s /Applications "$WORK/stage/应用程序"
-cp "Resources/试用说明-$VERSION.txt" "$WORK/stage/试用说明.txt"
+ln -s /Applications "$WORK/stage/Applications"
 hdiutil create -quiet -ov -format UDZO -fs HFS+ -volname "WiFi Priority $VERSION" -srcfolder "$WORK/stage" "$DMG"
 hdiutil verify "$DMG" >/dev/null
 ATTACH_OUTPUT="$(hdiutil attach -readonly -nobrowse -mountpoint "$MOUNT" "$DMG")"
 MOUNT_DEVICE="$(printf '%s\n' "$ATTACH_OUTPUT" | awk '$1 ~ /^\/dev\/disk/ { print $1; exit }')"
 test -n "$MOUNT_DEVICE"
 INSTALLED="$MOUNT/WiFi Priority.app"
+test -L "$MOUNT/Applications"
+test "$(readlink "$MOUNT/Applications")" = /Applications
+test "$(find "$MOUNT" -mindepth 1 -maxdepth 1 | wc -l | tr -d ' ')" = 2
 codesign --verify --strict "$INSTALLED"
 test "$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "$INSTALLED/Contents/Info.plist")" = "$VERSION"
 test "$(/usr/libexec/PlistBuddy -c 'Print :CFBundleVersion' "$INSTALLED/Contents/Info.plist")" = "$BUILD"

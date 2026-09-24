@@ -1,34 +1,38 @@
 # WiFi Priority
 
-一款原生 macOS 菜单栏工具，按你设置的顺序连接已保存的 Wi-Fi。支持多个备用网络、隐藏网络、快捷键和八种界面语言。
+WiFi Priority is a small macOS menu bar app that switches among your saved Wi-Fi networks in the order you choose.
 
-WiFi Priority is a native macOS menu bar app that switches between saved Wi-Fi networks in your preferred order. The source is available under the MIT License.
+![WiFi Priority settings with three example networks](docs/images/settings-preview.png)
 
-[English instructions](README.en.md)
+*Preview with example network names. The badge marks the network currently connected by macOS.*
 
-## 使用
+## Install
 
-1. 先在 macOS 的 Wi-Fi 设置中连接并保存要用的网络。
-2. 打开 WiFi Priority，授予读取当前 Wi-Fi 名称所需的定位权限。把网络加入列表，调整顺序并保存。列表右侧的“当前连接”标记显示 macOS 实际使用的网络；蓝色选中行只表示你正在编辑哪一项。
-3. 点击“启用自动切换”。应用会列出需要访问的网络，macOS 可能分别询问各网络的钥匙串访问权限。应用只为列表中的准确网络名称取得凭据，并把已授权的副本放在自己的加密登录钥匙串项目中，之后自动切换无需反复授权。新增加密网络或更改 Wi-Fi 密码后，在应用里更新已保存凭据。
-4. 要手动验证某个网络，先暂停自动切换，选中该项并点击“在系统 Wi-Fi 中测试”。连接由 macOS 系统界面完成；应用在两分钟内核对实际连接名称，测试后保留你选择的网络。
-5. 可选设置全局“暂停／开启”快捷键，或保持关闭。应用会尝试向 macOS 注册所选组合；若已被占用，保留原设置。
+1. Download the Apple Silicon DMG from the [v0.9.3 release](https://github.com/xiaohardy/WiFiPriority/releases/tag/v0.9.3).
+2. Open the DMG and drag **WiFi Priority** to **Applications**.
+3. Open **WiFi Priority** from Applications. The menu bar icon appears at the top of the screen.
 
-菜单栏图标以星星对应优先顺序，当前网络的星星更亮，暂停后图标变灰。主网络恢复时，应用需要连续两次扫描到它才会尝试切回。连接备用网络时每 15 秒核对当前连接、每 30 秒扫描一次候选；断线时每 15 秒扫描。已连接备用网络时，隐藏网络定向扫描只针对更高顺位的候选。连接失败后按 5、10、15 分钟退避。
+![WiFi Priority and Applications in the installer](docs/images/installer.png)
 
-**iPhone 即时热点：** macOS 系统菜单可能显示并连接尚未作为普通 Wi-Fi 广播的热点，但 CoreWLAN 扫描未必能发现它。应用不能保证主动唤醒这类热点；请用系统 Wi-Fi 菜单测试。若热点作为普通网络出现在扫描结果中，它可以参加自动切换。
+This preview build is locally signed but not notarized by Apple. If macOS blocks the first launch, try opening the app once, then go to **System Settings → Privacy & Security → Open Anyway**. [Apple's instructions](https://support.apple.com/en-us/102445) explain this step.
 
-## 隐私与边界
+Requires macOS 13 or later on Apple Silicon. The current build was checked on macOS 27; other versions and Intel Macs have not been tested.
 
-- 仅查询优先列表中准确名称对应的系统 Wi-Fi 凭据；不会枚举或读取无关钥匙串项目。密码不写入设置、日志或命令行，也不会上传。
-- 凭据副本在应用自己的登录钥匙串项目中。移除网络时应用尝试删除其副本；删除失败会提示。
-- 配置与本地滚动日志位于 `~/Library/Application Support/WiFiPriorityOpen/`。日志含 Wi-Fi 名称；分享诊断信息前请自行匿名化。
-- 配置与日志只允许当前用户读取；旧版创建的文件权限会在新版启动时收紧。事件日志由后台写入，避免占用设置界面。
-- 应用只确认 Wi-Fi 关联，不检测互联网、认证门户、VPN 或代理的可用性，也不修改有线网络、DNS、路由、代理或网络服务顺序。切换单张无线网卡时可能短暂断开连接。
+## Set up your networks
 
-## 构建
+1. Connect to each network once in macOS Wi-Fi settings so the system saves it.
+2. Add those networks in WiFi Priority, put the preferred one first, and save the order. Allow location access when macOS asks; it lets the app read Wi-Fi names.
+3. Select **Enable auto-switching**. macOS may ask for Keychain access to each protected network in your list. If a password changes later, use **Refresh saved credentials** in the app.
 
-需要 macOS、Xcode/Swift 5.9 或更新版本及 Python 3。`Package.swift` 的最低系统目标是 macOS 13；目前仅在 Apple Silicon / macOS 27 上构建和检查，其他系统与 Intel Mac 尚未完成实测。
+The app reads credentials only for networks in your list and keeps its authorized copies in your login Keychain. It does not put passwords in settings or logs. Settings and an event log stay on your Mac; the log includes Wi-Fi names, so remove them before sharing it.
+
+You can pause switching from the menu bar or assign an optional keyboard shortcut. To test a network without giving the app its password, pause switching and use **Test in macOS Wi-Fi**. An iPhone Instant Hotspot can be joined through macOS even when it does not appear in a normal Wi-Fi scan; automatic switching can use it only while it is discoverable as a Wi-Fi network.
+
+The stars in the menu bar icon follow your network order. The brighter star shows the connected network, and the icon dims when switching is paused.
+
+## Build from source
+
+Install Xcode or Swift 5.9 or later and Python 3, then run:
 
 ```sh
 bash scripts/test.sh
@@ -36,8 +40,8 @@ bash scripts/build.sh
 open "dist/WiFi Priority.app" --args --preview
 ```
 
-`--preview` 使用虚构网络，不扫描、不连接，也不读取用户设置。构建脚本默认生成 ad hoc 签名的本地开发包。稳定签名、正式公众下载包与 macOS 公证需要开发者自行配置；当前源码版本为 **0.9.2（构建 14）**，尚未把本机自签名试用镜像作为公开下载版。
+Preview mode uses example networks and does not scan or connect. The default build has an ad hoc signature and is intended for local development.
 
-## 许可
+## Feedback and license
 
-[MIT](LICENSE)
+Report bugs or suggest changes in [GitHub Issues](https://github.com/xiaohardy/WiFiPriority/issues). WiFi Priority is released under the [MIT License](LICENSE).
