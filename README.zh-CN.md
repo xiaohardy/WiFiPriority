@@ -2,7 +2,7 @@
 
 [English](README.md)
 
-给 Wi-Fi 排个队，Mac 就不用在几个已保存的网络之间猜拳了。首选排第一，备用依次往后；哪个正在连接，列表右边会告诉你。
+告诉它所有wifi的重要性，排好序，然后感受它吧
 
 ![WiFi Priority 中文设置窗口，显示三个示例网络](docs/images/settings-preview-zh.png)
 
