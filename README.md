@@ -1,5 +1,9 @@
 # WiFi Priority
 
+**Download:** [WiFi Priority 0.9.4 for Apple Silicon (.dmg)](https://github.com/xiaohardy/WiFiPriority/releases/download/v0.9.4/WiFiPriority-0.9.4-build16-preview-arm64.dmg) · [Release notes](https://github.com/xiaohardy/WiFiPriority/releases/tag/v0.9.4)
+
+This is an unnotarized preview build. See the [first-launch steps](#first-launch-on-macos) if macOS blocks it.
+
 [简体中文说明](README.zh-CN.md)
 
 WiFi Priority is a small macOS menu bar app that switches among your saved Wi-Fi networks in the order you choose.

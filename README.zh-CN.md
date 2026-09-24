@@ -1,5 +1,9 @@
 # WiFi Priority｜中文说明
 
+**直接下载：[WiFi Priority 0.9.4 Apple Silicon 安装包（DMG）](https://github.com/xiaohardy/WiFiPriority/releases/download/v0.9.4/WiFiPriority-0.9.4-build16-preview-arm64.dmg)** · [版本说明](https://github.com/xiaohardy/WiFiPriority/releases/tag/v0.9.4)
+
+这是未经 Apple 公证的预览版；如果首次打开被拦截，请看下面的[安装步骤](#安装)和[系统提示处理方法](#首次打开时的-macos-安全提示)。
+
 [English](README.md)
 
 告诉它所有wifi的重要性，排好序，然后感受它吧
